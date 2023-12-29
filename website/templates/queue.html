@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUEUE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #C5FFF8; /* Light background color for the entire page */
+        }
+
+        .nav-link:hover {
+            background-color: crimson; /* Change this to the desired hover background color */
+        }
+
+        .container-fluid {
+            background-color: #000000; /* Navbar background color */
+            border-bottom: 2px solid #B8621B;
+            padding: 10px 0;
+        }
+
+        header a {
+            color: #FFC436;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .nav-pills .nav-link {
+            padding: 1rem 1.5rem;
+            font-size: 1.1em;
+            color: black;
+        }
+
+        .container {
+            background-color: #FFFFFF; /* Container background color */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .doctor-container {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #343a40;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid navbar clearfix">
+        <header class="container d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom border-top">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                <span class="fs-4" > Receptionist </span>
+            </a>
+    
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="{{url_for('auth.recep_dashboard')}}" class="nav-link active" aria-current="page" style="color:black">PROFILE</a></li>
+                <li class="nav-item"><a href="{{url_for('views.add_patient')}}" class="nav-link">ADD PATIENT</a></li>
+                <li class="nav-item"><a href="{{url_for('views.add_appointment')}}" class="nav-link">ADD APPOINTMENT</a></li>
+                <li class="nav-item"><a href="{{url_for('views.queue')}}" class="nav-link">QUEUE</a></li>
+                <li class="nav-item"><a href="{{url_for('views.recep_invoice')}}" class="nav-link">PAYMENT</a></li>
+                <li class="nav-item"><a href="{{url_for('auth.admin_signout')}}" class="nav-link">SIGN OUT</a></li>
+            </ul>
+        </header>
+    </div>
+
+    <div class="container">
+        {% for doctor in doctors_data %}
+            <div class="doctor-container">
+                <h2>{{ doctor.name }}</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patient ID</th>
+                            <th>Specialization</th>
+                            <th>Doctor ID</th>
+                            <th>Time Slot</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for appointment in doctor.queue %}
+                            <tr>
+                                <td>{{ appointment.patient_id }}</td>
+                                <td>{{ appointment.specialization }}</td>
+                                <td>{{ appointment.doctor_id }}</td>
+                                <td>{{ appointment.time_slot }}</td>
+                                <td>{{ appointment.description }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

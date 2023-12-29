@@ -1,0 +1,100 @@
+/* Navbar styling */
+.navbar {
+    background-color: #000000;
+    border-bottom: 2px solid #B8621B;
+    padding: 10px 0;
+}
+
+.fs-4 {
+    color: white;
+}
+
+.active {
+    color: black;
+}
+
+/* Navbar header styling */
+.navbar header {
+    width: 100%;
+}
+
+/* Brand/logo styling */
+.navbar .link-body-emphasis {
+    color: #FFC436;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Navbar links styling */
+.navbar .nav-pills .nav-link {
+    padding: 1rem 1.5rem;
+    font-size: 1.1em;
+}
+
+/* Active link styling */
+.navbar .nav-pills .nav-link.active {
+    background-color: #E23E57;
+    color: #ffffff;
+}
+
+/* Hover effect for links */
+.navbar .nav-pills .nav-link:hover {
+    background-color: #F8EFD4;
+}
+
+/* Remove default list styling */
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Center the navigation items */
+.navbar .d-flex {
+    justify-content: center;
+}
+
+.row {
+    background-color: #352F44;
+    padding: 20px; /* Adjust padding as needed */
+    margin-top: 20px; /* Add margin to the top of the row */
+}
+
+/* Increase overall font size */
+body {
+    font-size: 16px;
+}
+
+/* Footer styling */
+footer {
+    background-color: black;
+    color: white;
+    padding: 20px; /* Add padding to the footer */
+}
+
+/* Custom Jumbotron Styling */
+.p-5 {
+    text-align: left;
+    margin: 20px auto; /* Adjust margin for spacing and center horizontally */
+    max-width: 75%;
+}
+
+.p-5 h1 {
+    color: #000000;
+}
+
+.p-5 p {
+    font-size: 18px;
+    color: #000000;
+}
+
+.p-5 button {
+    background-color: #E23E57;
+    color: #ffffff;
+}
+
+/* Card Styling */
+.card {
+    margin-top: 20px; /* Add margin to the top of the card */
+}

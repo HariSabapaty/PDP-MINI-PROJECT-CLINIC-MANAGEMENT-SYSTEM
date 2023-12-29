@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Doctor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: #C5FFF8;
+        }
+
+        .container {
+            background-color: #00A9FF;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #d32f2f;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            background-color: #e2e6ea; /* Set background color for all rows */
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #d4edda;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Delete Doctor</h1>
+
+        <form method="POST" action="{{ url_for('views.delete_doc') }}">
+            <label for="doctor_id">Select Doctor to Delete:</label>
+            <select id="doctor_id" name="doctor_id" required>
+                {% for doctor in doctorlist %}
+                    <option value="{{ doctor.doctor_id }}">{{ doctor.name }}</option>
+                {% endfor %}
+            </select>
+        
+            <button type="submit">Delete Doctor</button>
+        </form>
+    </div>
+    
+    <!-- Display flash messages here if needed -->
+
+    <div class="container">
+        <h2>Existing Doctors</h2>
+        <table border="1">
+            <tr>
+                <th>Doctor ID</th>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+                <th>Qualification</th>
+                <th>Available Hours</th>
+                <th>Password</th>
+            </tr>
+            {% for doctor in doctorlist %}
+                <tr>
+                    <td>{{ doctor.doctor_id }}</td>
+                    <td>{{ doctor.name }}</td>
+                    <td>{{ doctor.specialization }}</td>
+                    <td>{{ doctor.contact_number }}</td>
+                    <td>{{ doctor.email }}</td>
+                    <td>{{ doctor.qualification }}</td>
+                    <td>{{ doctor.available_hours|join(', ') }}</td>
+                    <td>{{ doctor.password }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

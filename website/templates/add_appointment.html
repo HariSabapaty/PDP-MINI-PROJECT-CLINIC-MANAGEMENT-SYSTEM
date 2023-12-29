@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Appointment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #C5FFF8; /* Light background color for the entire page */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #00A9FF; /* White background color for the container */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+    <script>
+        function showPopup() {
+            alert("Appointment added successfully!");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Appointment</h1>
+
+        <form method="POST" action="{{ url_for('views.add_appointment') }}" onsubmit="showPopup()">
+            <label for="patient_id">Select Patient ID:</label>
+            <select id="patient_id" name="patient_id" required>
+                {% for patient in patient_list %}
+                    <option value="{{ patient.patient_id }}">{{ patient.patient_id }} - {{ patient.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="specialization">Doctor Specialization:</label>
+            <select id="specialization" name="specialization" required>
+                <!-- Add options dynamically from your backend (server-side) -->
+                <!-- Add more options as needed -->
+                {% for doctor in doctor_list %}
+                    <option value="{{ doctor.specialization }}">{{ doctor.specialization }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="doctor_id">Select Doctor ID:</label>
+            <select id="doctor_id" name="doctor_id" required>
+                {% for doctor in doctor_list %}
+                    <option value="{{ doctor.doctor_id }}">{{ doctor.doctor_id }} - {{ doctor.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="time_slot">Time Slot:</label>
+            <select id="time_slot" name="time_slot" required>
+                <!-- Add options dynamically from your backend (server-side) -->
+                <option value="9AM-10AM">9AM-10AM</option>
+                <option value="2PM-3PM">2PM-3PM</option>
+                <!-- Add more options as needed -->
+            </select>
+
+            <label for="description">Appointment Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <button type="submit">Add Appointment</button>
+        </form>
+    </div>
+</body>
+</html>

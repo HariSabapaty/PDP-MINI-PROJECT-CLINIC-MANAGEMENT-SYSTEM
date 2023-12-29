@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='./css/home.css')}}">
+    
+
+  </head>
+<body>
+
+<div>
+  <div class="container-fluid  navbar clearfix">
+    <header class="container d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom border-top">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+            <span class="fs-4" ><img src="..\static\images\house.svg" /> Clinic Management System</span>
+        </a>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="#" class="nav-link active" aria-current="page" style="color:black">Home</a></li>
+            <li class="nav-item"><a href="login" class="nav-link">Login</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
+        </ul>
+    </header>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+      <!-- Jumbotron Column -->
+      <div class="col-md-8 p-5 mb-4 bg-body-tertiary rounded-3">
+          <div class="container-fluid py-5">
+              <h1 class="display-5 fw-bold">Apollo clinic   </h1>
+              <p class="col-md-8 fs-4">Team Apollo works with the aim of making medical care as 
+                accessible as possible. The Apollo Clinic of Nandanam,Chennai is one of the super clinics where you find solutions for all your healthcare needs.
+                 This single-storey facility is spread across 3640 sq. ft., offering a plethora of services. </p>
+              <button class="btn btn-primary btn-lg" type="button">Example button</button>
+          </div>
+      </div>
+
+      <!-- Thumbnail Card Column -->
+      <div class="col-md-4">
+          <div class="card shadow-sm">
+              
+                  <img src="../static/images/fedoc.jpeg">
+                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">APOLLO CLINIC</text>
+              
+              <div class="card-body">
+                  <p class="card-text"><img src="../static/images/geo-alt.svg">No. 320, Anna Salai,Teynampet, Nandanam,Chennai-600 035</p>
+                  <p class="card-text"><img src="../static/images/telephone-fill.svg">6369398130</p>
+                  <p class="card-text"><img src="../static/images/envelope.svg">apollohospitals@gmail.com</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                          <button type="button" class="btn btn-sm btn-outline-secondary" ><a href="https://www.google.com/maps/dir/12.8472624,77.6610756/Apollo+Hospital,+Periyamet,+Chennai,+Tamil+Nadu+600003/@12.78228,76.3235704,7z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3a5265fdfba01291:0x96156b77b1756463!2m2!1d80.270957!2d13.0825706?entry=ttu">Location</a></button>
+                      </div>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+<footer class="d-flex flex-wrap  justify-content-center align-items-center py-3 my-4 border-top" style="background-color: black; color: white;">
+
+  <p class="col-md-4 mb-0 text-white" >© Hari Company, Inc</p>
+  
+  <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+  </a>
+
+  <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-white" >Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-white">About</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Contact Us</a></li>
+  </ul>
+</footer>
+
+      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>

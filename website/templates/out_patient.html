@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outpatient Appointments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #C5FFF8; /* Background color for the entire page */
+        }
+
+        .container {
+            background-color: #ffffff; /* Container background color */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%; /* Adjust the width as needed */
+            max-width: 600px; /* Maximum width for responsiveness */
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .appointment-details {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .visit-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .visit-table th, .visit-table td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px; /* Increased padding for better readability */
+        }
+
+        .visit-table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .visit-table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .visit-table tbody tr:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Added styles for description and prescription input boxes */
+        form {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        label,
+        input,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            padding: 10px; /* Added padding for better input styling */
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Doctor: {{ doctor.name }}</h1>
+
+        {% if current_appointment %}
+            <div class="appointment-details">
+                <h2>Current Appointment:</h2>
+                <p><strong>Patient ID:</strong> {{ current_appointment.patient_id }}</p>
+                <p><strong>Description:</strong> {{ current_appointment.description}}</p>
+                
+                <form method="post" action="{{ url_for('views.out_patient') }}">
+                    <label for="diagnosis">Diagnosis:</label>
+                    <input type="text" name="diagnosis" required>
+                    
+                    <label for="prescription">Prescription:</label>
+                    <textarea name="prescription" required></textarea>
+                    
+                    <input type="submit" value="End Appointment">
+                </form>
+            </div>
+            
+            {% if all_visits %}
+                <div class="Visit-history">
+                    <h2>Visit History:</h2>
+                    <table class="visit-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Diagnosis</th>
+                                <th>Prescription</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for visit in all_visits %}
+                                <tr>
+                                    <td>{{ visit.visit_date }}</td>
+                                    <td>{{ visit.diagnosis }}</td>
+                                    <td>{{ visit.prescription }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        {% else %}
+            <p>No appointments in the queue</p>
+        {% endif %}
+    </div>
+</body>
+</html>

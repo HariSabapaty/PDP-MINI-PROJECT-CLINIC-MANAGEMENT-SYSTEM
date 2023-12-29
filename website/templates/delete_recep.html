@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Receptionist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #C5FFF8; /* Light background color */
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #00A9FF; /* Container background color */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #d32f2f;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e2e6ea;
+        }
+
+        tr:hover {
+            background-color: #d4edda;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Delete Receptionist</h1>
+
+        <form method="POST" action="{{ url_for('views.delete_recep') }}">
+            <label for="receptionist_id">Receptionist id to Delete:</label>
+            <select id="receptionist_id" name="receptionist_id" required>
+                {% for receptionist in receptionistlist %}
+                    <option value="{{ receptionist.receptionist_id }}">{{ receptionist.receptionist_id }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Delete Receptionist</button>
+        </form>
+
+        <!-- Display flash messages here if needed -->
+
+        <h1>Existing Receptionists</h1>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+                <th>Password</th>
+                <!-- Add other attributes as needed -->
+            </tr>
+            {% for receptionist in receptionistlist %}
+                <tr>
+                    <td>{{ receptionist.receptionist_id }}</td>
+                    <td>{{ receptionist.name }}</td>
+                    <td>{{ receptionist.contact_number }}</td>
+                    <td>{{ receptionist.email }}</td>
+                    <td>{{ receptionist.password }}</td>
+                    <!-- Add other attributes as needed -->
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

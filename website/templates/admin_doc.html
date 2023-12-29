@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Doctors</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #C5FFF8; /* Light background color */
+        }
+
+        .container-fluid.navbar.clearfix {
+            width: 100%;
+        }
+
+        .dashboard-container {
+            display: flex;
+        }
+
+        .nav-link:hover {
+            background-color: crimson;
+        }
+
+        .dashboard-sidebar {
+            width: 280px;
+            background-color: lightblue;
+        }
+
+        .doctor-box {
+            flex: 1;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .box-buttons {
+            margin-top: 10px;
+        }
+
+        .box-buttons button {
+            margin-right: 10px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #000000;
+            border-bottom: 2px solid #B8621B;
+            padding: 10px 0;
+        }
+
+        .fs-4 {
+            color: white;
+        }
+
+        .active {
+            color: black;
+        }
+
+        /* Navbar header styling */
+        .navbar header {
+            width: 100%;
+        }
+
+        /* Brand/logo styling */
+        .navbar .link-body-emphasis {
+            color: #FFC436;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        /* Navbar links styling */
+        .navbar .nav-pills .nav-link {
+            padding: 1rem 1.5rem;
+            font-size: 1.1em;
+        }
+
+        /* Active link styling */
+        .navbar .nav-pills .nav-link.active {
+            background-color: #E23E57;
+            color: #ffffff;
+        }
+
+        /* Hover effect for links */
+        .navbar .nav-pills .nav-link:hover {
+            background-color: #F8EFD4;
+        }
+
+        /* Remove default list styling */
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .container li {
+            margin-bottom: 10px;
+        }
+
+        /* Style for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        /* Style for table header */
+        th {
+            background-color: #343a40; /* Dark background color */
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Style for table rows */
+        tr {
+            background-color: #f8f9fa; /* Light background color */
+        }
+
+        /* Style for alternating row colors */
+        tr:nth-child(even) {
+            background-color: #e2e6ea; /* Lighter background color for even rows */
+        }
+
+        /* Style for table cells */
+        td {
+            padding: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        /* Hover effect for table rows */
+        tr:hover {
+            background-color: #d4edda; /* Change color on hover */
+        }
+
+        /* Responsive table styling */
+        @media (max-width: 767px) {
+            table {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid navbar clearfix">
+        <header class="container d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom border-top">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                <span class="fs-4" > Admin  </span>
+            </a>
+    
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="{{url_for('auth.admin_dashboard')}}" class="nav-link active" aria-current="page" style="color:black">Profile</a></li>
+                <li class="nav-item"><a href="{{url_for('views.admin_doc')}}" class="nav-link">Doctor </a></li>
+                <li class="nav-item"><a href="{{url_for('views.admin_recep')}}" class="nav-link">Receptionist </a></li>
+                <li class="nav-item"><a href="{{url_for('views.admin_patients')}}" class="nav-link">Patient</a></li>
+                <li class="nav-item"><a href="{{url_for('auth.admin_signout')}}" class="nav-link">Sign Out</a></li>
+            </ul>
+        </header>
+    </div>
+    
+    <div class="container d-flex mt-5" >
+        <div class="doctor-box">
+            <h2>Add Doctor</h2>
+            <p>Click the button below to add a new doctor to the clinic</p>
+            <div class="box-buttons">
+                <button class="btn btn-primary" ><a href ="add_doc" style="color: black;" >Add Doctor</a></button>
+            </div>
+        </div>
+
+        <!-- Delete Doctor Box -->
+        <div class="doctor-box">
+            <h2>Delete Doctor</h2>
+            <p>Click the button below to delete a doctor from the clinic</p>
+            <div class="box-buttons">
+                <button class="btn btn-warning"><a href ="delete_doc" style="color: black;" >Delete Doctor</a></button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Display Existing Doctors -->
+    <div class="container">
+        <h2>Existing Doctors</h2>
+        <table border="1">
+            <tr>
+                <th>Doctor ID</th>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+                <th>Qualification</th>
+                <th>Available Hours</th>
+                <th>Password</th>
+            </tr>
+            {% for doctor in doctorlist %}
+                <tr>
+                    <td>{{ doctor.doctor_id }}</td>
+                    <td>{{ doctor.name }}</td>
+                    <td>{{ doctor.specialization }}</td>
+                    <td>{{ doctor.contact_number }}</td>
+                    <td>{{ doctor.email }}</td>
+                    <td>{{ doctor.qualification }}</td>
+                    <td>{{ doctor.available_hours|join(', ') }}</td>
+                    <td>{{ doctor.password }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

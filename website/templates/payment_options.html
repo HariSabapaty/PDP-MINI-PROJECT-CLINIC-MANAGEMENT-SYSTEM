@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Options</title>
+    <!-- Add your styles if necessary -->
+</head>
+<body>
+    <h1>Payment Options</h1>
+    <p>Invoice Details:</p>
+    <p>Invoice Number: {{ invoice_number }}</p>
+    <p>Patient Name: {{ patient_name }}</p>
+    <p>Doctor Name: {{ doctor_name }}</p>
+    <p>Total Amount: ${{ total_amount }}</p>
+    <p>Payment Status: {{ payment_status }}</p>
+
+    <form action="/process_payment" method="post">
+        <input type="hidden" name="invoice_number" value="{{ invoice_number }}">
+        <input type="hidden" name="total_amount" value="{{ total_amount }}">
+        
+        <label for="payment_method">Select Payment Method:</label>
+        <select name="payment_method" id="payment_method">
+            <option value="card">Credit Card</option>
+            <option value="cash">Cash</option>
+        </select>
+    
+        <!-- Card payment fields -->
+        <div id="card_fields" style="display: none;">
+            <label for="card_number">Card Number:</label>
+            <input type="text" name="card_number" required>
+            
+            <label for="card_name">Cardholder Name:</label>
+            <input type="text" name="card_name" required>
+    
+            <label for="expiry_date">Expiry Date:</label>
+            <input type="text" name="expiry_date" placeholder="MM/YYYY" required>
+    
+            <label for="cvv">CVV:</label>
+            <input type="text" name="cvv" required>
+        </div>
+    
+        <!-- Cash payment fields -->
+        <div id="cash_fields" style="display: none;">
+            <label for="amount_received">Amount Received:</label>
+            <input type="text" name="amount_received" required>
+    
+            <label for="change_given">Change Given:</label>
+            <input type="text" name="change_given" required>
+        </div>
+    
+        <button type="submit">Proceed to Payment</button>
+    </form>
+    
+    <script>
+        document.getElementById('payment_method').addEventListener('change', function() {
+            var cardFields = document.getElementById('card_fields');
+            var cashFields = document.getElementById('cash_fields');
+    
+            if (this.value === 'card') {
+                cardFields.style.display = 'block';
+                cashFields.style.display = 'none';
+            } else if (this.value === 'cash') {
+                cardFields.style.display = 'none';
+                cashFields.style.display = 'block';
+            } else {
+                cardFields.style.display = 'none';
+                cashFields.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
